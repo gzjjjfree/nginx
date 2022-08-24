@@ -75,9 +75,10 @@
 
 #endif
 
-typedef intptr_t        ngx_int_t;
-typedef uintptr_t       ngx_uint_t;
-typedef intptr_t        ngx_flag_t;
+typedef intptr_t        ngx_int_t;         /*intptr_t和uintptr_t在linux平台的/usr/include/stdint.h头文件中可以找到*/
+typedef uintptr_t       ngx_uint_t;        /*ngx_int_t封装有符号整型，使用ngx_uint_t封装无符号整型*/
+typedef intptr_t        ngx_flag_t;        /*在64位机器上，intptr_t和uintptr_t分别是long int和unsigned long int的别名，
+                                           在32位机器上，intptr_t和unitptr_t分别是int和unsigned int的别名*/
 
 
 #define NGX_INT32_LEN   (sizeof("-2147483648") - 1)
