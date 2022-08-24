@@ -192,10 +192,10 @@ static char        *ngx_signal;
 static char **ngx_os_environ;
 
 
-int ngx_cdecl
-main(int argc, char *const *argv)
+int ngx_cdecl        /*_cdecl：C Declaration的缩写，表示C语言默认的函数调用 */
+main(int argc, char *const *argv)   /*int argc为整型变量，char为从0到255的整型，*const和**argv为指针//**/
 {
-    ngx_buf_t        *b;
+    ngx_buf_t        *b;                          /*声明结构体ngx_buf_t的指针变量*b*/
     ngx_log_t        *log;
     ngx_uint_t        i;
     ngx_cycle_t      *cycle, init_cycle;
