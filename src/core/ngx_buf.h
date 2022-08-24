@@ -15,7 +15,7 @@
 
 typedef void *            ngx_buf_tag_t;
 
-typedef struct ngx_buf_s  ngx_buf_t;
+typedef struct ngx_buf_s  ngx_buf_t;      /*定义标识为ngx_buf_s的结构体起名字为ngx_buf_t，可以用后者来定义变量(ngx_buf_t 变量名)*/
 
 struct ngx_buf_s {
     u_char          *pos;
