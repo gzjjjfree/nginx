@@ -195,14 +195,14 @@ static char **ngx_os_environ;
 int ngx_cdecl        /*_cdecl：C Declaration的缩写，表示C语言默认的函数调用 */
 main(int argc, char *const *argv)   /*int argc为整型变量，char为从0到255的整型，*const和**argv为指针//**/
 {
-    ngx_buf_t        *b;                          /*声明结构体ngx_buf_t的指针变量*b*/
-    ngx_log_t        *log;
-    ngx_uint_t        i;
+    ngx_buf_t        *b;                          /*声明结构体ngx_buf_t的指针变量*b-ngx_buf.h*/
+    ngx_log_t        *log;                        /*声明结构体ngx_log_s的指针变量*log-ngx_log.h*/
+    ngx_uint_t        i;                          /*ngx_uint_t封装无符号整型*/
     ngx_cycle_t      *cycle, init_cycle;
     ngx_conf_dump_t  *cd;
     ngx_core_conf_t  *ccf;
 
-    ngx_debug_init();
+    ngx_debug_init();                           /*应该是函数名*/
 
     if (ngx_strerror_init() != NGX_OK) {
         return 1;
