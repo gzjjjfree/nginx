@@ -42,7 +42,8 @@
 #define NGX_LOG_DEBUG_ALL         0x7ffffff0
 
 
-typedef u_char *(*ngx_log_handler_pt) (ngx_log_t *log, u_char *buf, size_t len);
+typedef u_char *(*ngx_log_handler_pt) (ngx_log_t *log, u_char *buf, size_t len);  /*ngx_log_handler_pt为复杂函数指针的替代，
+                                                                                 只要参数类型相同，ngx_log_handler_pt类型就可以指向并调用改函数*/
 typedef void (*ngx_log_writer_pt) (ngx_log_t *log, ngx_uint_t level,
     u_char *buf, size_t len);
 
