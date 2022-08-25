@@ -75,47 +75,47 @@ typedef ngx_int_t (*ngx_output_chain_filter_pt)(void *ctx, ngx_chain_t *in);   /
 typedef void (*ngx_output_chain_aio_pt)(ngx_output_chain_ctx_t *ctx,  /*定义ngx_output_chain_aio_pt为 void型指针包含(ngx_output_chain_ctx_t *ctx,ngx_file_t *file)*/
     ngx_file_t *file);
 
-struct ngx_output_chain_ctx_s {
-    ngx_buf_t                   *buf;
-    ngx_chain_t                 *in;
-    ngx_chain_t                 *free;
-    ngx_chain_t                 *busy;
+struct ngx_output_chain_ctx_s {                           /*定义ngx_output_chain_ctx_s结构体*/
+    ngx_buf_t                   *buf;                     /*定义*buf为ngx_buf_t数据结构类型指针*/ 
+    ngx_chain_t                 *in;                      /*定义*in为ngx_chain_t数据结构类型指针*/
+    ngx_chain_t                 *free;                    /*定义 *free为ngx_chain_t数据结构类型指针*/
+    ngx_chain_t                 *busy;                    /*定义 *busy为ngx_chain_t数据结构类型指针*/
 
-    unsigned                     sendfile:1;
-    unsigned                     directio:1;
-    unsigned                     unaligned:1;
-    unsigned                     need_in_memory:1;
-    unsigned                     need_in_temp:1;
-    unsigned                     aio:1;
+    unsigned                     sendfile:1;              /*标记信号*/
+    unsigned                     directio:1;              /*标记信号*/
+    unsigned                     unaligned:1;             /*标记信号*/
+    unsigned                     need_in_memory:1;        /*标记信号*/
+    unsigned                     need_in_temp:1;          /*标记信号*/
+    unsigned                     aio:1;                   /*标记信号*/
 
 #if (NGX_HAVE_FILE_AIO || NGX_COMPAT)
-    ngx_output_chain_aio_pt      aio_handler;
+    ngx_output_chain_aio_pt      aio_handler;             /*定义aio_handler为ngx_output_chain_aio_pt类型*/
 #endif
 
 #if (NGX_THREADS || NGX_COMPAT)
-    ngx_int_t                  (*thread_handler)(ngx_thread_task_t *task,
+    ngx_int_t                  (*thread_handler)(ngx_thread_task_t *task,   /*声明指针变量thread_handler包含(ngx_thread_task_t *task,ngx_file_t *file)*/
                                                  ngx_file_t *file);
-    ngx_thread_task_t           *thread_task;
+    ngx_thread_task_t           *thread_task;                   /*声明指针变量 *thread_task为ngx_thread_task_t类型*/  
 #endif
 
-    off_t                        alignment;
+    off_t                        alignment;                /*定义alignment为off_t类型*/
 
-    ngx_pool_t                  *pool;
-    ngx_int_t                    allocated;
-    ngx_bufs_t                   bufs;
-    ngx_buf_tag_t                tag;
+    ngx_pool_t                  *pool;                     /*定义指针 *pool为ngx_pool_t类型*/
+    ngx_int_t                    allocated;                /*定义allocated为ngx_int_t类型*/
+    ngx_bufs_t                   bufs;                     /*定义bufs为ngx_bufs_t类型*/
+    ngx_buf_tag_t                tag;                      /*定义tag为ngx_buf_tag_t类型*/
 
-    ngx_output_chain_filter_pt   output_filter;
-    void                        *filter_ctx;
+    ngx_output_chain_filter_pt   output_filter;            /*定义output_filter为ngx_output_chain_filter_pt类型*/
+    void                        *filter_ctx;               /*定义指针*filter_ctx为void类型*/
 };
 
-
-typedef struct {
-    ngx_chain_t                 *out;
-    ngx_chain_t                **last;
-    ngx_connection_t            *connection;
-    ngx_pool_t                  *pool;
-    off_t                        limit;
+ 
+typedef struct {                                           /*定义ngx_chain_writer_ctx_t数据结构体*/
+    ngx_chain_t                 *out;                      /*定义指针 *out为ngx_chain_t类型*/
+    ngx_chain_t                **last;                     /*定义指针 **last为ngx_chain_t类型*/
+    ngx_connection_t            *connection;               /*定义指针 *connection为ngx_connection_t 类型*/
+    ngx_pool_t                  *pool;                     /*定义指针*pool为 ngx_pool_t 类型*/
+    off_t                        limit;                    /*定义limit为off_t类型*/
 } ngx_chain_writer_ctx_t;
 
 
