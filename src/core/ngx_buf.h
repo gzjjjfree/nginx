@@ -5,7 +5,7 @@
  */
 
 
-#ifndef _NGX_BUF_H_INCLUDED_
+#ifndef _NGX_BUF_H_INCLUDED_               /*防止重复引入*/
 #define _NGX_BUF_H_INCLUDED_
 
 
@@ -13,66 +13,66 @@
 #include <ngx_core.h>
 
 
-typedef void *            ngx_buf_tag_t;
+typedef void *            ngx_buf_tag_t;  /*定义无类型指针*/
 
 typedef struct ngx_buf_s  ngx_buf_t;      /*定义标识为ngx_buf_s的结构体起名字为ngx_buf_t，可以用后者来定义变量(ngx_buf_t 变量名)*/
 
 struct ngx_buf_s {
-    u_char          *pos;
-    u_char          *last;
-    off_t            file_pos;
-    off_t            file_last;
+    u_char          *pos;           /*u_char是无符号的char型*/
+    u_char          *last;          /*u_char是无符号的char型*/
+    off_t            file_pos;      /**/
+    off_t            file_last;     /**/
 
-    u_char          *start;         /* start of buffer */
-    u_char          *end;           /* end of buffer */
-    ngx_buf_tag_t    tag;
-    ngx_file_t      *file;
-    ngx_buf_t       *shadow;
+    u_char          *start;         /* start of buffer *//*u_char是无符号的char型*/
+    u_char          *end;           /* end of buffer *//*u_char是无符号的char型*/
+    ngx_buf_tag_t    tag;           /*定义无类型指针*/
+    ngx_file_t      *file;          /**/
+    ngx_buf_t       *shadow;        /*ngx_buf_s数据结构的指针，应该就是指向这个结构开头地方的地址*/
 
 
     /* the buf's content could be changed */
-    unsigned         temporary:1;
+    unsigned         temporary:1;            /*标记信号*/
 
     /*
      * the buf's content is in a memory cache or in a read only memory
      * and must not be changed
      */
-    unsigned         memory:1;
+    unsigned         memory:1;              /*标记信号非负整数*/
 
     /* the buf's content is mmap()ed and must not be changed */
-    unsigned         mmap:1;
+    unsigned         mmap:1;               /*标记信号*/
 
-    unsigned         recycled:1;
-    unsigned         in_file:1;
-    unsigned         flush:1;
-    unsigned         sync:1;
-    unsigned         last_buf:1;
-    unsigned         last_in_chain:1;
+    unsigned         recycled:1;           /*标记信号*/
+    unsigned         in_file:1;            /*标记信号*/
+    unsigned         flush:1;              /*标记信号*/
+    unsigned         sync:1;               /*标记信号*/
+    unsigned         last_buf:1;           /*标记信号*/
+    unsigned         last_in_chain:1;      /*标记信号*/
 
-    unsigned         last_shadow:1;
-    unsigned         temp_file:1;
+    unsigned         last_shadow:1;        /*标记信号*/
+    unsigned         temp_file:1;          /*标记信号*/
 
-    /* STUB */ int   num;
+    /* STUB */ int   num;                 /*定义num为整型*/
 };
 
 
-struct ngx_chain_s {
-    ngx_buf_t    *buf;
-    ngx_chain_t  *next;
+struct ngx_chain_s {                     /*定义ngx_chain_s数据结构类型*/
+    ngx_buf_t    *buf;                   /*定义*buf为ngx_buf_t数据结构类型指针*/
+    ngx_chain_t  *next;                  /*定义*next为ngx_chain_t数据结构类型指针,应该指向下个结构体*/
 };
 
 
-typedef struct {
-    ngx_int_t    num;
+typedef struct {                         /*定义 ngx_bufs_t数据结构类型，这个应该用在复数*/
+    ngx_int_t    num;                    /*定义num为ngx_int_t型*/
     size_t       size;
 } ngx_bufs_t;
 
 
 typedef struct ngx_output_chain_ctx_s  ngx_output_chain_ctx_t;
 
-typedef ngx_int_t (*ngx_output_chain_filter_pt)(void *ctx, ngx_chain_t *in);
+typedef ngx_int_t (*ngx_output_chain_filter_pt)(void *ctx, ngx_chain_t *in);   /*定义ngx_output_chain_filter_pt为ngx_int_t型指针包含(void *ctx, ngx_chain_t *in)*/
 
-typedef void (*ngx_output_chain_aio_pt)(ngx_output_chain_ctx_t *ctx,
+typedef void (*ngx_output_chain_aio_pt)(ngx_output_chain_ctx_t *ctx,  /*定义ngx_output_chain_aio_pt为 void型指针包含(ngx_output_chain_ctx_t *ctx,ngx_file_t *file)*/
     ngx_file_t *file);
 
 struct ngx_output_chain_ctx_s {
